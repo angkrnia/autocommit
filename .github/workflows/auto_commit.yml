@@ -1,1 +1,52 @@
+name: Auto commit
 
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+
+  schedule:
+    - cron: "0 7,9,11 * * 1,3" # See https://crontab.guru/#0_7,9,11_*_*_1,3
+
+jobs:
+  auto_commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Modify last update
+        run: |
+          date -u '+%Y-%m-%dT%H:%M:%SZ' > LAST_UPDATED
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "anggakurnia712@gmail.com"
+          git config --local user.name "angkrnia"
+          git add -A
+
+          arr=(
+            "chore(bot): 🌅 menyulam arunika pada riwayat"
+            "chore(bot): 🌌 menitip pendar di cakrawala sunyi"
+            "chore(bot): 🪶 menatah aksara pada linimasa"
+            "chore(bot): 🌿 merawat rahayu dalam repositori"
+            "chore(bot): 🕊️ mengirim swastamita lewat jejak kecil"
+            "chore(bot): 🌊 menjaga nirmala di arus perubahan"
+            "chore(bot): 🪷 menumbuhkan asmaraloka pada halaman waktu"
+            "chore(bot): 🔆 menyibak bianglala selepas rinai"
+            "chore(bot): 🍃 menabur ancala pada langkah senyap"
+            "chore(bot): 🧭 menandai cakra manggilingan hari ini"
+          )
+
+          rand=$((RANDOM % ${#arr[@]}))
+
+          git commit -m "${arr[$rand]}"
+
+      - name: Push changes
+        run: git push
