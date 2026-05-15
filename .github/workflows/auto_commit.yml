@@ -8,7 +8,7 @@ on:
       - main
 
   schedule:
-    - cron: "0 7,9,11 * * 1,3" # See https://crontab.guru/#0_7,9,11_*_*_1,3
+    - cron: "0 7,9,11 * * *" # Runs daily at 14:00, 16:00, and 18:00 WIB
 
 jobs:
   auto_commit:

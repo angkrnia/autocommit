@@ -4,7 +4,7 @@ Repositori kecil untuk menjalankan commit otomatis lewat GitHub Actions. Workflo
 
 ## Jadwal
 
-Workflow berjalan otomatis setiap Senin dan Rabu pada:
+Workflow berjalan otomatis setiap hari pada:
 
 - `07:00 UTC` / `14:00 WIB`
 - `09:00 UTC` / `16:00 WIB`
@@ -14,7 +14,7 @@ Konfigurasi cron ada di `.github/workflows/auto_commit.yml`:
 
 ```yml
 schedule:
-  - cron: "0 7,9,11 * * 1,3"
+  - cron: "0 7,9,11 * * *"
 ```
 
 ## Token
