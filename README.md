@@ -9,12 +9,13 @@ Workflow berjalan otomatis setiap hari pada:
 - `07:00 UTC` / `14:00 WIB`
 - `09:00 UTC` / `16:00 WIB`
 - `11:00 UTC` / `18:00 WIB`
+- `15:00 UTC` / `22:00 WIB`
 
 Konfigurasi cron ada di `.github/workflows/auto_commit.yml`:
 
 ```yml
 schedule:
-  - cron: "0 7,9,11 * * *"
+  - cron: "0 7,9,11,15 * * *"
 ```
 
 ## Token
